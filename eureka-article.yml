@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: eureka-article
+  security:
+    user:
+      name: admin
+      password: 123456
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      probability: 1.0
+server:
+  port: 18099
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:123456@localhost:18080/eureka/,http://admin:123456@localhost:18081/eureka/,http://admin:123456@localhost:18082/eureka/
+  #    register-with-eureka: false
+#    fetch-registry: false
+  instance:
+     preferIpAddress: true
+     instance:
+       instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+ribbon:
+  eager-load:
+    enabled: true
+    clients: user-auth
+logging:
+  level:
+    cn:
+      config:
+        UserRemoteClient: DEBUG
+    org:
+      springframework:
+        web:
+          servlet:
+            DispatcherServlet: DEBUG
+zuul:
+  routes:
+    user-hello:
+      path: /user/**
