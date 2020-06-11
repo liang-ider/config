@@ -9,10 +9,11 @@ eureka:
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
   client:
     service-url:
-      defaultZone: http://admin:123456@localhost:18080/eureka/,http://admin:123456@localhost:18081/eureka/,http://admin:123456@localhost:18082/eureka/
+      defaultZone: http://admin:123456@192.168.43.129:18080/eureka/,http://admin:123456@192.168.43.129:18081/eureka/,http://admin:123456@192.168.43.129:18082/eureka/
 logging:
   level:
-    cn: debug
+    cn:
+      his2: debug
 # JWT
 jwt:
   header: Authorization
